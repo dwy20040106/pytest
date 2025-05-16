@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>简易电商平台</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: none;
+        }
+    </style>
+</head>
+<body class="container mt-4">
+<div>切换页面:<a href="login.html">LoginHTML</a></div>
+    <!-- 搜索表单 -->
+    <form onsubmit="return handleSearch(event)">
+        <input type="text" name="q" class="form-control" placeholder="输入商品名称" id="searchInput">
+        <button type="submit" class="btn btn-primary mt-2">搜索</button>
+    </form>
+
+    <!-- 商品列表 -->
+    <div class="row mt-3">
+        <div class="col-md-4 product-item" data-name="智能手机">
+            <h5>智能手机</h5>
+            <button class="btn-add-cart btn btn-sm btn-success">加入购物车</button>
+        </div>
+        <div class="col-md-4 product-item" data-name="笔记本电脑">
+            <h5>笔记本电脑</h5>
+            <button class="btn-add-cart btn btn-sm btn-success">加入购物车</button>
+        </div>
+    </div>
+
+    <!-- 自定义弹窗 -->
+    <div id="toast" class="toast align-items-center text-white bg-success" role="alert">
+        <div class="d-flex">
+            <div class="toast-body">商品已加入购物车！</div>
+        </div>
+    </div>
+
+    <script>
+        // 搜索功能
+        function handleSearch(e) {
+            e.preventDefault();
+            const keyword = document.getElementById('searchInput').value.toLowerCase();
+            document.querySelectorAll('.product-item').forEach(item => {
+                const productName = item.dataset.name.toLowerCase();
+                item.style.display = productName.includes(keyword) ? 'block' : 'none';
+            });
+        }
+
+        // 购物车功能
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const toast = document.getElementById('toast');
+                toast.style.display = 'block';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>
