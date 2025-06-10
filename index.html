@@ -1,68 +1,436 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>简易电商平台</title>
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web 自动化测试知识检测</title>
     <style>
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
+        :root {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+                "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            --primary: #2563eb;
+            /* blue-600 */
+            --secondary: #475569;
+            /* slate-600 */
+            --bg: #f8fafc;
+            /* slate-50 */
+            --surface: #ffffff;
+            /* white */
+            --radius: 1rem;
+            --shadow: 0 4px 24px rgb(0 0 0 / 0.07);
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+        }
+
+        .options {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            border: 0;
+            padding: 0.75rem;
+            font-size: 1.125rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background: #1d4ed8;
+        }
+
+        a {
+            margin: 20px auto;
+            display: block;
+            width: 60%;
+            background: var(--primary);
+            color: #fff;
+            border: 0;
+            padding: 0.75rem;
+            font-size: 1.125rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        a:hover {
+            background: #1d4ed8;
+        }
+
+        .explanation {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-top: 0.75rem;
             display: none;
+        }
+
+        .correct {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .incorrect {
+            color: #dc2626;
+            font-weight: 600;
         }
     </style>
 </head>
-<body class="container mt-4">
-<div>切换页面:<a href="login.html">LoginHTML</a></div>
-    <!-- 搜索表单 -->
-    <form onsubmit="return handleSearch(event)">
-        <input type="text" name="q" class="form-control" placeholder="输入商品名称" id="searchInput">
-        <button type="submit" class="btn btn-primary mt-2">搜索</button>
-    </form>
 
-    <!-- 商品列表 -->
-    <div class="row mt-3">
-        <div class="col-md-4 product-item" data-name="智能手机">
-            <h5>智能手机</h5>
-            <button class="btn-add-cart btn btn-sm btn-success">加入购物车</button>
-        </div>
-        <div class="col-md-4 product-item" data-name="笔记本电脑">
-            <h5>笔记本电脑</h5>
-            <button class="btn-add-cart btn btn-sm btn-success">加入购物车</button>
-        </div>
-    </div>
+<body>
+    <div class="container">
+        <h1>Web 自动化测试知识检测</h1>
+        <form id="quizForm" class="card">
 
-    <!-- 自定义弹窗 -->
-    <div id="toast" class="toast align-items-center text-white bg-success" role="alert">
-        <div class="d-flex">
-            <div class="toast-body">商品已加入购物车！</div>
-        </div>
+            <!-- 选择题 1-20 (已完整) -->
+            <!-- 1 -->
+            <div class="question" data-id="q1" data-answer="A" data-type="mc">
+                <p>1. 在Web自动化测试中，以下哪个方法用于提交表单？</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A" /> A．submit()</label>
+                    <label><input type="radio" name="q1" value="B" /> B．send_keys()</label>
+                    <label><input type="radio" name="q1" value="C" /> C．click()</label>
+                    <label><input type="radio" name="q1" value="D" /> D．submit_form()</label>
+                </div>
+                <div class="explanation">正确答案：A。解析：<code>submit()</code> 用于提交包含该元素的表单。</div>
+            </div>
+            <!-- 2 -->
+            <div class="question" data-id="q2" data-answer="B" data-type="mc">
+                <p>2. 在Selenium中，以下哪个方法用于模拟鼠标悬停操作？</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A" /> A．hover()</label>
+                    <label><input type="radio" name="q2" value="B" /> B．move_to_element()</label>
+                    <label><input type="radio" name="q2" value="C" /> C．mouse_over()</label>
+                    <label><input type="radio" name="q2" value="D" /> D．hover_over()</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：使用 <code>ActionChains.move_to_element()</code> 实现鼠标悬停。</div>
+            </div>
+            <!-- 3 -->
+            <div class="question" data-id="q3" data-answer="C" data-type="mc">
+                <p>3. Selenium WebDriver 是____________。</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A" /> A．一个性能测试工具</label>
+                    <label><input type="radio" name="q3" value="B" /> B．一个桌面应用程序</label>
+                    <label><input type="radio" name="q3" value="C" /> C．一个Web浏览器自动化工具</label>
+                    <label><input type="radio" name="q3" value="D" /> D．一个数据库测试工具</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：Selenium 用于 Web 浏览器自动化测试。</div>
+            </div>
+            <!-- 4 -->
+            <div class="question" data-id="q4" data-answer="C" data-type="mc">
+                <p>4. 在Selenium中，以下哪个定位方式是通过元素的 HTML 标签属性来定位的？</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A" /> A．id</label>
+                    <label><input type="radio" name="q4" value="B" /> B．name</label>
+                    <label><input type="radio" name="q4" value="C" /> C．tag name</label>
+                    <label><input type="radio" name="q4" value="D" /> D．link text</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：通过元素标签名定位。</div>
+            </div>
+            <!-- 5 -->
+            <div class="question" data-id="q5" data-answer="C" data-type="mc">
+                <p>5. 在Web自动化测试中，XPath是一种：</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A" /> A．编程语言</label>
+                    <label><input type="radio" name="q5" value="B" /> B．数据库查询语言</label>
+                    <label><input type="radio" name="q5" value="C" /> C．网页元素定位策略</label>
+                    <label><input type="radio" name="q5" value="D" /> D．网络协议</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：XPath 用于在 HTML/XML 中定位节点。</div>
+            </div>
+            <!-- 6 -->
+            <div class="question" data-id="q6" data-answer="B" data-type="mc">
+                <p>6. 下列选项中，关于常用的键盘操作方法的描述错误的是：</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A" /> A．send_keys(Keys.ENTER) 表示回车键</label>
+                    <label><input type="radio" name="q6" value="B" /> B．send_keys(Keys.'a') 表示全选</label>
+                    <label><input type="radio" name="q6" value="C" /> C．send_keys(Keys.SPACE) 表示空格键</label>
+                    <label><input type="radio" name="q6" value="D" /> D．send_keys(Keys.BACK_SPACE) 表示删除键</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：全选应使用组合键 <code>Keys.CONTROL + a</code>。</div>
+            </div>
+            <!-- 7 -->
+            <div class="question" data-id="q7" data-answer="A" data-type="mc">
+                <p>7. 在Web自动化测试中，以下哪个方法用于清除输入框的内容？</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="A" /> A．clear()</label>
+                    <label><input type="radio" name="q7" value="B" /> B．clear_text()</label>
+                    <label><input type="radio" name="q7" value="C" /> C．delete_text()</label>
+                    <label><input type="radio" name="q7" value="D" /> D．erase_text()</label>
+                </div>
+                <div class="explanation">正确答案：A。解析：<code>clear()</code> 清空输入框。</div>
+            </div>
+            <!-- 8 -->
+            <div class="question" data-id="q8" data-answer="A" data-type="mc">
+                <p>8. 下列选项中，属于鼠标操作的方法的是：</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A" /> A．context_click()</label>
+                    <label><input type="radio" name="q8" value="B" /> B．set_window_size()</label>
+                    <label><input type="radio" name="q8" value="C" /> C．set_window_position()</label>
+                    <label><input type="radio" name="q8" value="D" /> D．find_element()</label>
+                </div>
+                <div class="explanation">正确答案：A。解析：<code>context_click()</code> 右键点击。</div>
+            </div>
+            <!-- 9 -->
+            <div class="question" data-id="q9" data-answer="A" data-type="mc">
+                <p>9. 在Selenium中，以下哪个方法用于模拟点击事件？</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A" /> A．click()</label>
+                    <label><input type="radio" name="q9" value="B" /> B．press()</label>
+                    <label><input type="radio" name="q9" value="C" /> C．tap()</label>
+                    <label><input type="radio" name="q9" value="D" /> D．select()</label>
+                </div>
+                <div class="explanation">正确答案：A。解析：单击元素。</div>
+            </div>
+            <!-- 10 -->
+            <div class="question" data-id="q10" data-answer="C" data-type="mc">
+                <p>10. 在自动化测试中，断言用于：</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="A" /> A．定位页面元素</label>
+                    <label><input type="radio" name="q10" value="B" /> B．执行测试操作</label>
+                    <label><input type="radio" name="q10" value="C" /> C．验证测试结果</label>
+                    <label><input type="radio" name="q10" value="D" /> D．管理测试数据</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：断言验证预期与实际。</div>
+            </div>
+            <!-- 11 -->
+            <div class="question" data-id="q11" data-answer="D" data-type="mc">
+                <p>11. 自动化测试通常用于：</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="A" /> A．减少测试成本</label>
+                    <label><input type="radio" name="q11" value="B" /> B．提高测试覆盖率</label>
+                    <label><input type="radio" name="q11" value="C" /> C．减少测试执行时间</label>
+                    <label><input type="radio" name="q11" value="D" /> D．所有以上</label>
+                </div>
+                <div class="explanation">正确答案：D。解析：全部都是自动化测试优势。</div>
+            </div>
+            <!-- 12 -->
+            <div class="question" data-id="q12" data-answer="C" data-type="mc">
+                <p>12. 以下哪个不是自动化测试的优点？</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="A" /> A．一致性</label>
+                    <label><input type="radio" name="q12" value="B" /> B．可重复性</label>
+                    <label><input type="radio" name="q12" value="C" /> C．灵活性</label>
+                    <label><input type="radio" name="q12" value="D" /> D．减少人为错误</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：自动化测试灵活性低。</div>
+            </div>
+            <!-- 13 -->
+            <div class="question" data-id="q13" data-answer="C" data-type="mc">
+                <p>13. Selenium WebDriver 可以直接操作的浏览器是？</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="A" /> A．仅 Chrome</label>
+                    <label><input type="radio" name="q13" value="B" /> B．仅 Firefox</label>
+                    <label><input type="radio" name="q13" value="C" /> C．所有主流浏览器（需对应驱动）</label>
+                    <label><input type="radio" name="q13" value="D" /> D．仅无头浏览器</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：多浏览器支持。</div>
+            </div>
+            <!-- 14 -->
+            <div class="question" data-id="q14" data-answer="D" data-type="mc">
+                <p>14. 以下哪个工具不是自动化测试工具？</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="A" /> A．Selenium</label>
+                    <label><input type="radio" name="q14" value="B" /> B．JUnit</label>
+                    <label><input type="radio" name="q14" value="C" /> C．Postman</label>
+                    <label><input type="radio" name="q14" value="D" /> D．Notepad++</label>
+                </div>
+                <div class="explanation">正确答案：D。解析：Notepad++ 是文本编辑器。</div>
+            </div>
+            <!-- 15 -->
+            <div class="question" data-id="q15" data-answer="B" data-type="mc">
+                <p>15. 处理下拉菜单（Select 标签）应使用哪个 Selenium 类？</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="A" /> A．WebElement</label>
+                    <label><input type="radio" name="q15" value="B" /> B．Select</label>
+                    <label><input type="radio" name="q15" value="C" /> C．Actions</label>
+                    <label><input type="radio" name="q15" value="D" /> D．Alert</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：Select 操作下拉菜单。</div>
+            </div>
+            <!-- 16 -->
+            <div class="question" data-id="q16" data-answer="A" data-type="mc">
+                <p>16. 在自动化测试中，测试数据管理的主要目的是：</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="A" /> A．确保数据的准确性和一致性</label>
+                    <label><input type="radio" name="q16" value="B" /> B．减少测试数据的使用</label>
+                    <label><input type="radio" name="q16" value="C" /> C．增加测试数据的复杂性</label>
+                    <label><input type="radio" name="q16" value="D" /> D．降低测试数据的准备时间</label>
+                </div>
+                <div class="explanation">正确答案：A。解析：数据可靠性。</div>
+            </div>
+            <!-- 17 -->
+            <div class="question" data-id="q17" data-answer="C" data-type="mc">
+                <p>17. 以下哪个不是持续集成（CI）的特点？</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="A" /> A．减少测试时间</label>
+                    <label><input type="radio" name="q17" value="B" /> B．自动化测试</label>
+                    <label><input type="radio" name="q17" value="C" /> C．手动代码审查</label>
+                    <label><input type="radio" name="q17" value="D" /> D．快速反馈</label>
+                </div>
+                <div class="explanation">正确答案：C。解析：CI 侧重自动化流程。</div>
+            </div>
+            <!-- 18 -->
+            <div class="question" data-id="q18" data-answer="B" data-type="mc">
+                <p>18. 在自动化测试中，以下哪个不是断言（Assertions）的作用？</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="A" /> A．验证测试结果</label>
+                    <label><input type="radio" name="q18" value="B" /> B．记录测试结果</label>
+                    <label><input type="radio" name="q18" value="C" /> C．确定测试是否通过</label>
+                    <label><input type="radio" name="q18" value="D" /> D．报告测试失败</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：记录结果由测试框架完成。</div>
+            </div>
+            <!-- 19 -->
+            <div class="question" data-id="q19" data-answer="B" data-type="mc">
+                <p>19. 显式等待（Explicit Wait）用于解决什么问题？</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="A" /> A．浏览器兼容性</label>
+                    <label><input type="radio" name="q19" value="B" /> B．动态元素加载延迟</label>
+                    <label><input type="radio" name="q19" value="C" /> C．多窗口切换</label>
+                    <label><input type="radio" name="q19" value="D" /> D．文件下载</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：等待元素/条件。</div>
+            </div>
+            <!-- 20 -->
+            <div class="question" data-id="q20" data-answer="B" data-type="mc">
+                <p>20. Page Object 模式的主要目的是：</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="A" /> A．减少代码重复</label>
+                    <label><input type="radio" name="q20" value="B" /> B．提高测试脚本可维护性</label>
+                    <label><input type="radio" name="q20" value="C" /> C．加快执行速度</label>
+                    <label><input type="radio" name="q20" value="D" /> D．支持多语言</label>
+                </div>
+                <div class="explanation">正确答案：B。解析：提高可维护性。</div>
+            </div>
+
+            <!-- 填空题 21-27 -->
+            <div class="question" data-id="f1" data-answer="excel,csv" data-type="blank">
+                <p>21. 数据驱动测试中，测试数据通常存储在 ______ 或 ______ 中。（用英文逗号分隔给出两个答案）</p>
+                <input type="text" name="f1" placeholder="例如：Excel, CSV" />
+                <div class="explanation">正确答案：Excel, CSV。解析：常见数据源格式。</div>
+            </div>
+            <div class="question" data-id="f2" data-answer="driver" data-type="blank">
+                <p>22. Selenium WebDriver 通过 ______ 与浏览器进行通信。</p>
+                <input type="text" name="f2" placeholder="例如：driver" />
+                <div class="explanation">正确答案：driver。解析：如 chromedriver、geckodriver。</div>
+            </div>
+            <div class="question" data-id="f3" data-answer="pytest.mark.parametrize" data-type="blank">
+                <p>23. 在 pytest 框架中可以使用 ______ 装饰器来实现参数化。</p>
+                <input type="text" name="f3" placeholder="例如：pytest.mark.parametrize" />
+                <div class="explanation">正确答案：pytest.mark.parametrize。解析：参数化测试。</div>
+            </div>
+            <div class="question" data-id="f4" data-answer="assert" data-type="blank">
+                <p>24. 在自动化测试中，________ 用于验证测试结果是否符合预期。</p>
+                <input type="text" name="f4" placeholder="例如：assert" />
+                <div class="explanation">正确答案：assert。解析：断言语句。</div>
+            </div>
+            <div class="question" data-id="f5" data-answer="driver.title" data-type="blank">
+                <p>25. 自动化测试中，验证页面标题的常用方法是 ______（Selenium 语法）。</p>
+                <input type="text" name="f5" placeholder="例如：driver.title" />
+                <div class="explanation">正确答案：driver.title。解析：读取当前页面标题。</div>
+            </div>
+            <div class="question" data-id="f6" data-answer="driver.switch_to.frame()" data-type="blank">
+                <p>26. 若元素在 iframe 内，必须先通过 ______ 方法切换到 iframe 才能操作。</p>
+                <input type="text" name="f6" placeholder="例如：driver.switch_to.frame()" />
+                <div class="explanation">正确答案：driver.switch_to.frame()。解析：切换上下文。</div>
+            </div>
+            <div class="question" data-id="f7" data-answer="测试用例" data-type="blank">
+                <p>27. 测试自动化框架通常包括 ______、执行器和报告器。</p>
+                <input type="text" name="f7" placeholder="例如：测试用例" />
+                <div class="explanation">正确答案：测试用例。解析：常见三大组件。</div>
+            </div>
+
+            <button type="submit">提交答案</button>
+            <a href="./Web自动化测试练习题及解析.html">前往解析</a>
+        </form>
     </div>
 
     <script>
-        // 搜索功能
-        function handleSearch(e) {
+        document.getElementById("quizForm").addEventListener("submit", function (e) {
             e.preventDefault();
-            const keyword = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('.product-item').forEach(item => {
-                const productName = item.dataset.name.toLowerCase();
-                item.style.display = productName.includes(keyword) ? 'block' : 'none';
+            const questions = document.querySelectorAll(".question");
+            let correctCount = 0;
+            questions.forEach((q) => {
+                const type = q.dataset.type;
+                const answer = q.dataset.answer.toLowerCase();
+                const explanation = q.querySelector(".explanation");
+                let userAnswer = "";
+                if (type === "mc") {
+                    const checked = q.querySelector("input[type='radio']:checked");
+                    userAnswer = checked ? checked.value.toLowerCase() : "";
+                    if (checked) {
+                        if (userAnswer === answer) {
+                            correctCount++; checked.parentElement.insertAdjacentHTML("beforeend", " <span class='correct'>(✓)</span>");
+                        } else {
+                            checked.parentElement.insertAdjacentHTML("beforeend", " <span class='incorrect'>(✗)</span>");
+                        }
+                    }
+                } else if (type === "blank") {
+                    const input = q.querySelector("input[type='text']");
+                    userAnswer = input.value.trim().toLowerCase();
+                    const answerArr = answer.split(/\s*,\s*/);
+                    const userArr = userAnswer.split(/\s*,\s*/);
+                    const correct = answerArr.every((ans) => userArr.includes(ans));
+                    if (correct) {
+                        correctCount++; input.insertAdjacentHTML("afterend", " <span class='correct'>(✓)</span>");
+                    } else {
+                        input.insertAdjacentHTML("afterend", " <span class='incorrect'>(✗)</span>");
+                    }
+                }
+                explanation.style.display = "block";
             });
-        }
-
-        // 购物车功能
-        document.querySelectorAll('.btn-add-cart').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const toast = document.getElementById('toast');
-                toast.style.display = 'block';
-                setTimeout(() => {
-                    toast.style.display = 'none';
-                }, 3000);
-            });
+            document.querySelectorAll("input, button[type='submit']").forEach((el) => { el.disabled = true; });
+            alert(`答对 ${correctCount} / ${questions.length} 题！`);
         });
     </script>
 </body>
+
 </html>
